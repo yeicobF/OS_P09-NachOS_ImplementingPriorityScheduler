@@ -88,7 +88,9 @@ void selectOption(int *option){
 
     while(!validNumber){
 		// system("clear"); // Limpia la pantalla, pero no se pudo incluir su biblioteca.
-		cout<< "\n - MENU:\n\t1. Simple Thread.\n\t2.-Example of threads (FCFS).\n\t3.-Exit\n\n ->  Select one option: ";
+		cout<< "\n - MENU:\n\t1. Simple Thread.\n\t2. Example of threads (FCFS).";
+        cout << "\n\t3. Producer-Consumer (FCFS)\n\t4. Threads (Priority)\n\t5. Exit";
+        cout << "\n\n ->  Select one option: ";
 		cin >> auxOption;
 
 		// También valida que el número ingresado no sea flotante.
@@ -98,7 +100,7 @@ void selectOption(int *option){
             allowInputNumberAgain(cin);
 			continue; // Volver al inicio del ciclo.
 		}
-		*option = auxOption; // Si el auxiliar no es flotante, asignarlo.
+		*option = auxOption; // Si el auxiliar no es flotante ni cadena o no válido, asignarlo.
 		/* Si se estableció un número válido (no se reinició el proceso con
 			el continue), hacer la variable true y salir del ciclo.*/
 		validNumber = true;
@@ -374,7 +376,8 @@ ThreadTest()
                 currentThread->Yield();
                 break;
             }
-            case 3: cout << "\n -> You have exited selection." << endl; break;
+            case 3:
+            case 5: cout << "\n -> You have exited selection." << endl; break;
             default: cout << "\n -> Enter a valid number between 1 and 3" << endl; break;
         }
     }
