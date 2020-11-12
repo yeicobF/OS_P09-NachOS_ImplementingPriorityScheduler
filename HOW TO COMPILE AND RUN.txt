@@ -1,0 +1,10 @@
+Thursday, November 10th, 2020.
+
+-> COMPILE
+- From the shell (terminal):
+	cd nachos
+	make
+
+-> RUN
+- From nachos directory:
+	threads/./nachos -t
