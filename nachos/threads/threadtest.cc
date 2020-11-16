@@ -413,9 +413,12 @@ ThreadTest()
                 /* If user choses option 4, he needs to enter a priority value
                     for each thread. Give values from 0 to 5 to these
                     priorities, where 0 is the highest priority. */
-                Thread *t1P = new Thread("Priority Thread 1.", askPriority(1));
+                Thread *t1P = new Thread("Priority Thread 1.");
+                t1P->setPriority(askPriority(1));
                 Thread *t2P = new Thread("Priority Thread 2.", askPriority(2));
+                t2P->setPriority(askPriority(2));
                 Thread *t3P = new Thread("Priority Thread 3.", askPriority(3));
+                t3P->setPriority(askPriority(3));
                 /* Luego de haber ingresado la prioridad de cada uno de los
                     hilos, hacer un while o algo para que se ejecute el de menor
                     prioridad. Si tienen la misma prioridad, se ejecutará el

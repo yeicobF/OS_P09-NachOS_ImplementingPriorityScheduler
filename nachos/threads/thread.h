@@ -81,7 +81,7 @@ class Thread {
     int machineState[MachineStateSize];  // all registers except for stackTop
 
   public:
-    Thread(char* debugName, int priorityValue);		// initialize a Thread
+    Thread(char* debugName);		// initialize a Thread
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted
 					// must not be running when delete
@@ -101,6 +101,8 @@ class Thread {
     void setStatus(ThreadStatus st) { status = st; }
     char* getName() { return (name); }
     void Print() { printf("%s, ", name); }
+    // Método para establecer la prioridad del hilo.
+    void setPriority(int priorityValue){ priority = priorityValue; }
     // Método para obtener la prioridad del hilo.
     int getPriority() { return priority; }
 

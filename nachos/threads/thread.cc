@@ -32,10 +32,10 @@
 //	"threadName" is an arbitrary string, useful for debugging.
 //----------------------------------------------------------------------
 
-Thread::Thread(char* threadName, int priorityValue)
+Thread::Thread(char* threadName)
 {
     // The priority value to run the Threads.
-    priority = priorityValue;
+    // priority = priorityValue;
     name = threadName;
     stackTop = NULL;
     stack = NULL;
