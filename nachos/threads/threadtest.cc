@@ -315,11 +315,15 @@ ThreadTest()
 {
     DEBUG('t', "Entering SimpleTest");
     // Buffer[MAX] = {}; // Initialize array with 0s. // Enabled by default.
-    int option = 0;
+    int option = 0, maxOption = 5;
     // Thread *tSimple;
     // Thread *t[3]; // Array of Threads.
     // Thread* t; // This was possible for this, but not for the others.
-    while(option != 3){
+    while(option != maxOption){
+        /* Option chosen by the user is executed once, and the program finishes
+            regardless what option was chosen. (Once code has been compiled,
+            every single option can be modified without modifying the code
+            again). */
         selectOption(&option);
         switch(option){
             case 1:
@@ -376,9 +380,23 @@ ThreadTest()
                 currentThread->Yield();
                 break;
             }
-            case 3:
+            case 3: cout << "\n 3. Producer-Consumer (FCFS) IS NOT AVAILABLE YET." << endl; break;
+            case 4: /* The same as Option 2 but with priorities.*/
+            {   /* Threads (Priority)*/
+                /* If user choses option 4, he needs to enter a priority value
+                    for each thread. Give values from 0 to 5 to these
+                    priorities, where 0 is the highest priority. */
+                Thread *t1P = new Thread("Priority Thread 1.", askPriority());
+                Thread *t2P = new Thread("Priority Thread 2.", askPriority());
+                Thread *t3P = new Thread("Priority Thread 3.", askPriority());
+                /* Luego de haber ingresado la prioridad de cada uno de los
+                    hilos, hacer un while o algo para que se ejecute el de menor
+                    prioridad. Si tienen la misma prioridad, se ejecutará el
+                    que haya llegado antes.*/
+                break;
+            }
             case 5: cout << "\n -> You have exited selection." << endl; break;
-            default: cout << "\n -> Enter a valid number between 1 and 3" << endl; break;
+            default: cout << "\n -> Enter a valid number between 1 and " + maxOption << endl; break;
         }
     }
 }

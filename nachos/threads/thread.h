@@ -81,7 +81,7 @@ class Thread {
     int machineState[MachineStateSize];  // all registers except for stackTop
 
   public:
-    Thread(char* debugName, int priorityNumber);		// initialize a Thread 
+    Thread(char* debugName, int priorityValue);		// initialize a Thread
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted
 					// must not be running when delete
@@ -101,6 +101,8 @@ class Thread {
     void setStatus(ThreadStatus st) { status = st; }
     char* getName() { return (name); }
     void Print() { printf("%s, ", name); }
+    // Método para obtener la prioridad del hilo.
+    int getPriority() { return priority; }
 
   private:
     // some of the private data for this class is listed above
@@ -110,6 +112,8 @@ class Thread {
 					// (If NULL, don't deallocate stack)
     ThreadStatus status;		// ready, running or blocked
     char* name;
+    // Prioridad del hilo.
+    int priority;
 
     void StackAllocate(VoidFunctionPtr func, int arg);
     					// Allocate a stack for thread.
