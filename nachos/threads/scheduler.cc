@@ -60,7 +60,7 @@ Scheduler::ReadyToRun (Thread *thread)
     // readyList->Append((void *)thread);
 
     // Ahora inserta al listo de acuerdo con su prioridad.
-    readyList->SortedInsert((void *)thread, thread->getPriority();
+    readyList->SortedInsert((void *)thread, thread->getPriority());
 }
 
 //----------------------------------------------------------------------

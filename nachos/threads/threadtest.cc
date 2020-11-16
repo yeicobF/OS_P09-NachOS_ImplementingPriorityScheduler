@@ -25,6 +25,8 @@
 // Tamaño máximo del arreglo.
 // Maximum size of the array.
 #define MAX 6
+// Valores de las prioridades de los hilos. Constante para no cambiarlo.
+const int maxPriority = 0, minPriority = 5;
 
 // Not to include everything in the std namespace, just what we want.
 // using std::cin;
@@ -110,16 +112,16 @@ void selectOption(int *option){
 
 // Método que preguntará por la prioridad del hilo del 0 al 5.
 int askPriority(int threadNumber){
-    float priority = 0;
+    float priority = 0.0;
     bool validNumber = false;
 
     while(!validNumber){
-        cout << "\n - Enter the priority number of the thread" + threadNumber + "\n [0 is the most priority and 5 is the least]: ";
+        cout << "\n - Enter the priority number of the thread" << threadNumber << "\n [" << maxPriority << " is the most priority and " << minPriority << " is the least]: ";
         cin >> priority;
 
 		// También valida que el número ingresado no sea flotante.
 		// Si la diferencia entre el floor y el valor es > 0, es flotante (decimales).
-		if(isEnteredValueNotInt(cin, auxOption)){ // !std::cin || std::cin.fail();
+		if(isEnteredValueNotInt(cin, priority) || priority < maxPriority || priority > minPriority){ // !std::cin || std::cin.fail();
             // Here the input stream is cleaned, wich allows user to input data again.
             allowInputNumberAgain(cin);
 			continue; // Volver al inicio del ciclo.
@@ -284,7 +286,7 @@ void Thread2_Actions(int which){
     if(maxElement >= 0) // Sí tiene factorial por ser positivo el valor.
         // Se imprime el factorial del número más grande.
         // Printing the factorial of the largest number.
-        cout << "\n - [Factorial of maximum element [" << cout << maxElement << "]: " << factorial(maxElement) << "]" << endl;
+        cout << "\n - [Factorial of maximum element [" << maxElement << "]: " << factorial(maxElement) << "]" << endl;
     else
         /* Al ser número negativo el máximo no tiene factorial en
             números reales, solo en números complejos.*/
@@ -415,9 +417,9 @@ ThreadTest()
                     priorities, where 0 is the highest priority. */
                 Thread *t1P = new Thread("Priority Thread 1.");
                 t1P->setPriority(askPriority(1));
-                Thread *t2P = new Thread("Priority Thread 2.", askPriority(2));
+                Thread *t2P = new Thread("Priority Thread 2.");
                 t2P->setPriority(askPriority(2));
-                Thread *t3P = new Thread("Priority Thread 3.", askPriority(3));
+                Thread *t3P = new Thread("Priority Thread 3.");
                 t3P->setPriority(askPriority(3));
                 /* Luego de haber ingresado la prioridad de cada uno de los
                     hilos, hacer un while o algo para que se ejecute el de menor
