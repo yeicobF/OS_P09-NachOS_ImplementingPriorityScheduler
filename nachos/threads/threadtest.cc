@@ -109,12 +109,12 @@ void selectOption(int *option){
 }
 
 // Método que preguntará por la prioridad del hilo del 0 al 5.
-int askPriority(){
+int askPriority(int threadNumber){
     float priority = 0;
     bool validNumber = false;
 
     while(!validNumber){
-        cout << "\n - Enter the priority number of the thread\n [0 is the most priority and 5 is the least]: ";
+        cout << "\n - Enter the priority number of the thread" + threadNumber + "\n [0 is the most priority and 5 is the least]: ";
         cin >> priority;
 
 		// También valida que el número ingresado no sea flotante.
@@ -413,9 +413,9 @@ ThreadTest()
                 /* If user choses option 4, he needs to enter a priority value
                     for each thread. Give values from 0 to 5 to these
                     priorities, where 0 is the highest priority. */
-                Thread *t1P = new Thread("Priority Thread 1.", askPriority());
-                Thread *t2P = new Thread("Priority Thread 2.", askPriority());
-                Thread *t3P = new Thread("Priority Thread 3.", askPriority());
+                Thread *t1P = new Thread("Priority Thread 1.", askPriority(1));
+                Thread *t2P = new Thread("Priority Thread 2.", askPriority(2));
+                Thread *t3P = new Thread("Priority Thread 3.", askPriority(3));
                 /* Luego de haber ingresado la prioridad de cada uno de los
                     hilos, hacer un while o algo para que se ejecute el de menor
                     prioridad. Si tienen la misma prioridad, se ejecutará el
