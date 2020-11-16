@@ -432,7 +432,12 @@ ThreadTest()
                 t1P->Fork(Thread1_Actions, 1);
                 t2P->Fork(Thread2_Actions, 2);
                 t3P->Fork(Thread3_Actions, 3);
-                currentThread->Yield();
+                
+                // Como los hilos no corren en orden, hay que darles el CPU
+                // 	manualmente.
+                currentThread->Yield(); // 1
+                currentThread->Yield(); // 2
+                currentThread->Yield(); // 3
                 break;
             }
             case 5: cout << "\n -> You have exited selection." << endl; break;
