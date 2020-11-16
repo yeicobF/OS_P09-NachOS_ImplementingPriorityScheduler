@@ -108,6 +108,30 @@ void selectOption(int *option){
     cout << endl;
 }
 
+// Método que preguntará por la prioridad del hilo del 0 al 5.
+int askPriority(){
+    float priority = 0;
+    bool validNumber = false;
+
+    while(!validNumber){
+        cout << "\n - Enter the priority number of the thread\n [0 is the most priority and 5 is the least]: ";
+        cin >> priority;
+
+		// También valida que el número ingresado no sea flotante.
+		// Si la diferencia entre el floor y el valor es > 0, es flotante (decimales).
+		if(isEnteredValueNotInt(cin, auxOption)){ // !std::cin || std::cin.fail();
+            // Here the input stream is cleaned, wich allows user to input data again.
+            allowInputNumberAgain(cin);
+			continue; // Volver al inicio del ciclo.
+		}
+		/* Si se estableció un número válido (no se reinició el proceso con
+			el continue), hacer la variable true y salir del ciclo.*/
+		validNumber = true;
+    }
+    // Regresar la prioridad.
+    return priority;
+}
+
 // For ordering in a simple way in descending order (largest to shortest).
 void bubbleSortDescending(int array[MAX]){
     int temp = 0;
@@ -383,6 +407,9 @@ ThreadTest()
             case 3: cout << "\n 3. Producer-Consumer (FCFS) IS NOT AVAILABLE YET." << endl; break;
             case 4: /* The same as Option 2 but with priorities.*/
             {   /* Threads (Priority)*/
+                // Que el usuario ingrese los datos del arreglo.
+                // The user will enter the values of the array.
+                fillArray();
                 /* If user choses option 4, he needs to enter a priority value
                     for each thread. Give values from 0 to 5 to these
                     priorities, where 0 is the highest priority. */
@@ -392,7 +419,15 @@ ThreadTest()
                 /* Luego de haber ingresado la prioridad de cada uno de los
                     hilos, hacer un while o algo para que se ejecute el de menor
                     prioridad. Si tienen la misma prioridad, se ejecutará el
-                    que haya llegado antes.*/
+                    que haya llegado antes.
+                    - Ahora que revisé el código, creo que el mismo Yield haría
+                        esta revisión.*/
+
+                // Ya que están todos los hilos listos, utilizar el Fork.
+                t1P->Fork(Thread1_Actions, 1);
+                t2P->Fork(Thread2_Actions, 2);
+                t3P->Fork(Thread3_Actions, 3);
+                currentThread->Yield();
                 break;
             }
             case 5: cout << "\n -> You have exited selection." << endl; break;
